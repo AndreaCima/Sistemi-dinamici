@@ -1,6 +1,10 @@
 clear; clc; close all; 
 
-%% punto a 
+%% punto a
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Simulare il sistema dinamico dell'esercizio e plottare le soluzioni y1,
+% y2, r=sqrt(y1^2 + y2^2) e nello spazio delle fasi (y1, y2)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 mu = 1; % provare i valori 1 e 0.5
 tspan = [0, 20];
 odefun = @(t, y) [mu*y(1) - y(2) - y(1)*( y(1).^2 + 1.5 * y(2).^2 );
@@ -41,6 +45,10 @@ ylabel('y2')
 
 
 %% punto b
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Fare plot delle funzioni u, u1, u2 in funzione del tempo e fare plot
+% nello spazio delle fasi (u1, u2).
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 tspan = [0, 100]; % provare i valori [0, 100] e [0, 300];
 
 a = pi/3.1; % provare i valori pi/3.1 e sqrt(2)  
@@ -73,8 +81,12 @@ xlabel('u1')
 ylabel('u2')
 
 
-%% punto c 
-
+%% punto c
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Attrattore di Lorenz:
+% Plottare y1, y2, y3, r in funzione del tempo e nello spazio
+% tridimensionale (y1, y2, y3).
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 tspan = [0, 300];
 sigma = 10; 
 r = 28; 
@@ -102,7 +114,7 @@ xlabel('tempo')
 title('y2', Interpreter='latex')
 
 subplot(4, 1, 3)
-plot(t, y1, LineWidth=2);
+plot(t, y3, LineWidth=2);
 grid on
 xlabel('tempo')
 title('y3', Interpreter='latex')
@@ -115,7 +127,6 @@ xlabel('tempo')
 title('r', Interpreter='latex')
 
 
-
 figure; 
 
 plot3(y(:, 1), y(:, 2), y(:, 3), LineWidth=1)
@@ -126,6 +137,11 @@ zlabel('y3')
 title('Attrattore di Lorentz')
 
 %% punto d
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Moto di un corpo in orbita intorno ad un altro:
+% Plottare y1, y2, r in funzione del tempo e fare plot nello spazio delle 
+% fasi (y1, y2)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 rho = 0.25;
 alpha = pi/4;
