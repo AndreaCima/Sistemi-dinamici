@@ -148,7 +148,7 @@ alpha = pi/4;
 
 R =@(v, w) ((v.^2 + w.^2).^(1.5)) / alpha.^2;
 
-tspan = [0, 25]; % provare anche con [0, 100] e [0, 300]
+tspan = [0, 300]; % provare anche con [0, 100] e [0, 300]
 
 y0 = [1-rho; 0; 0; alpha*sqrt( (1+rho) / (1-rho) )];
 
@@ -182,7 +182,7 @@ xlabel('tempo')
 title('r', Interpreter='latex')
 
 subplot(2, 2, 4)
-plot(y1, y2, LineWidth=2)
+plot(y1, y2, '--', LineWidth=2)
 grid on
 xlabel('tempo')
 title('Spazio delle fasi y1-y2', Interpreter='latex')
