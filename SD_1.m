@@ -143,6 +143,7 @@ title('Attrattore di Lorentz')
 % fasi (y1, y2)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+options=odeset('RelTol',5.e-13 ,'AbsTol',1.e-13,'InitialStep',1.e-5,'MaxStep',5);
 rho = 0.25;
 alpha = pi/4;
 
@@ -154,7 +155,7 @@ y0 = [1-rho; 0; 0; alpha*sqrt( (1+rho) / (1-rho) )];
 
 odefun = @(t, y) [y(3); y(4); -y(1)/ R(y(1), y(2)); -y(2)/ R(y(1), y(2)) ];
 
-[t, y] = ode15s(odefun, tspan, y0);
+[t, y] = ode15s(odefun, tspan, y0, options);
 
 y1 = y(:, 1);
 y2 = y(:, 2);
