@@ -43,7 +43,9 @@ err_rk2 = norm(E2_rk2)/norm(nye);
 
 
 figure; 
-subplot(2, 2, 1)
+
+title(tiledlayout(2, 2), 'Metodo di Eulero Esplicito', Interpreter='latex')
+nexttile
 plot(t, ya_eulero(:, 1), 'r', DisplayName='y1 eulero')
 hold on
 plot(t, ye(:, 1), '--b', DisplayName='y1 esatta')
@@ -53,8 +55,7 @@ legend(Location="best")
 grid on
 xlabel('tempo')
 
-
-subplot(2, 2, 2)
+nexttile
 plot(t, er1_eulero, DisplayName='er1 eulero')
 hold on
 plot(t, er2_eulero, DisplayName='er2 eulero')
@@ -64,9 +65,7 @@ legend(Location="best")
 grid on
 xlabel('tempo')
 
-
-subplot(2, 2, 3)
-
+nexttile
 plot(t, nya_eulero, 'r', DisplayName='errore nya eulero')
 hold on
 plot(t, nye, '--b', DisplayName='errore nye')
@@ -74,7 +73,7 @@ legend(Location="best")
 grid on
 xlabel('tempo')
 
-subplot(2, 2, 4)
+nexttile
 plot(ya_eulero(:, 1), ya_eulero(:, 2), 'r', DisplayName='approssimazione eulero')
 hold on
 plot(ye(:, 1), ye(:, 2), '--b',  DisplayName='soluzione esatta')
@@ -85,7 +84,8 @@ title('spazio delle fasi', Interpreter='latex')
 
 
 figure; 
-subplot(2, 2, 1)
+title(tiledlayout(2, 2), 'Metodo Runge-Kutta', Interpreter='latex')
+nexttile
 plot(t, ya_rk2(:, 1), 'r', DisplayName='y1 rk2')
 hold on
 plot(t, ye(:, 1), '--b', DisplayName='y1 esatta')
@@ -96,7 +96,7 @@ xlabel('tempo')
 grid on
 
 
-subplot(2, 2, 2)
+nexttile
 plot(t, er1_rk2, DisplayName='er1 rk2')
 hold on
 plot(t, er2_rk2, DisplayName='er2 rk2')
@@ -107,7 +107,7 @@ grid on
 xlabel('tempo')
 
 
-subplot(2, 2, 3)
+nexttile
 plot(t, nya_rk2, 'r', DisplayName='errore nya rk2')
 hold on
 plot(t, nye, '--b', DisplayName='errore nye')
@@ -115,7 +115,7 @@ legend(Location="best")
 grid on
 xlabel('tempo')
 
-subplot(2, 2, 4)
+nexttile
 plot(ya_rk2(:, 1), ya_rk2(:, 2), 'r', DisplayName='approssimazione rk2')
 hold on
 plot(ye(:, 1), ye(:, 2), '--b', DisplayName='soluzione esatta')
@@ -123,6 +123,8 @@ legend(Location="best")
 axis equal
 grid on
 title('spazio delle fasi', Interpreter='latex')
+xlabel('$y_1$', Interpreter='latex')
+ylabel('$y_2$', Interpreter='latex')
 
 
 
