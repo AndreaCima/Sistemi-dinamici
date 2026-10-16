@@ -21,7 +21,7 @@ h = 0.001;
 
 ye = esatta(t, mu, y0); % soluzione esatta
 
-% errori
+%%%%%%%%%%%%%%%%%%%%%%% CALCOLO ERRORI %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 er1_eulero = ye(:, 1) - ya_eulero(:, 1);
 er2_eulero = ye(:, 2) - ya_eulero(:, 2);
@@ -41,7 +41,7 @@ nya_rk2 = sqrt(sum(ya_rk2.^2, 2));
 err_eulero = norm(E2_eulero)/norm(nye);
 err_rk2 = norm(E2_rk2)/norm(nye);
 
-
+%%%%%%%%%%%%%%%%%%%% PLOT ERRORI E APPROSSIMAZIONI %%%%%%%%%%%%%%%%%%%%%%%%
 figure; 
 
 title(tiledlayout(2, 2), 'Metodo di Eulero Esplicito', Interpreter='latex')
@@ -126,6 +126,74 @@ title('spazio delle fasi', Interpreter='latex')
 xlabel('$y_1$', Interpreter='latex')
 ylabel('$y_2$', Interpreter='latex')
 
+
+%%%%%%%%%%%%%%%%%%%%%%%% CALCOLO ORDINI DI CONVERGENZA %%%%%%%%%%%%%%%%%%%%
+H = 0.02*2.^(0:-1:-7);
+
+err = zeros(length(H), 3); 
+
+Cols = {'h', 'err_eulero', 'err_rk2', 'err_rk4', 'p_eulero', 'p_rk2', 'p_rk4'}; 
+Cols_type = {'double', 'double', 'double', 'double', 'double', 'double', 'double'};
+T = table('Size', [length(H)-1, length(Cols)], ...
+    'VariableTypes', Cols_type, ...
+    'VariableNames', Cols);
+
+for j = 1:length(H)
+    h = H(j);
+    [t, ya_eulero] = eulero(f, tspan, y0, h); % approssimazione Eulero
+    [~, ya_rk2] = rk2(f, tspan, y0, h, alpha); % approssimazione Runge Kutta 2 
+    [~, ya_rk4] = rk4(f, tspan, y0, h); % approssimazione Runge Kutta 4
+    
+    ye = esatta(t, mu, y0); % soluzione esatta
+
+    E2_eulero = sqrt(sum( (ye-ya_eulero).^2, 2));
+    E2_rk2 = sqrt(sum( (ye-ya_rk2).^2, 2));
+    E2_rk4 = sqrt(sum( (ye-ya_rk4).^2, 2));
+    nye = sqrt(sum(ye.^2, 2));
+
+    err_eulero = norm(E2_eulero)/norm(nye);
+    err_rk2 = norm(E2_rk2)/norm(nye);
+    err_rk4 = norm(E2_rk4)/norm(nye);
+
+    err(j, :) = [err_eulero, err_rk2, err_rk4];
+
+    if j > 1
+        p_eulero = log2(err(j-1, 1)/err_eulero);
+        p_rk2= log2(err(j-1, 2)/err_rk2);
+        p_rk4= log2(err(j-1, 3)/err_rk4);
+
+        T.h(j-1) = h;
+        T.err_eulero(j-1) = err_eulero;
+        T.err_rk2(j-1) = err_rk2;
+        T.err_rk4(j-1) = err_rk4;
+        T.p_eulero(j-1) = p_eulero; 
+        T.p_rk2(j-1) = p_rk2;
+        T.p_rk4(j-1) = p_rk4;
+    end
+
+
+end
+
+figure; 
+loglog(H, err(:, 1), '-o', LineWidth=2,  DisplayName='Eulero')
+grid on
+hold on
+loglog(H, err(:, 2), '-o', LineWidth=2, DisplayName='Runge Kutta 2')
+loglog(H, err(:, 3), '-o', LineWidth=2, DisplayName='Runge Kutta 4')
+loglog(H, err(end, 1).*(H./H(end)), '--r', DisplayName='$O(h)$')
+loglog(H, err(end, 2).*(H./H(end)).^2, '--r', DisplayName='$O(h^2)$')
+loglog(H, err(end, 3).*(H./H(end)).^4, '--r', DisplayName='$O(h^4)$')
+title('Ordine di convergenza', Interpreter='latex')
+legend(Location="best", Interpreter="latex")
+xlabel('step h', Interpreter='latex')
+
+disp(T)
+
+%%%%%%%%%%%%%%%%%%%%% Runge Kutta del quarto ordine %%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FUNZIONI %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
 
 function ye = esatta(t, mu, y0)
