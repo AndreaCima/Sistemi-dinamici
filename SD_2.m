@@ -189,10 +189,6 @@ xlabel('step h', Interpreter='latex')
 
 disp(T)
 
-%%%%%%%%%%%%%%%%%%%%% Runge Kutta del quarto ordine %%%%%%%%%%%%%%%%%%%%%%%
-
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FUNZIONI %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
 
