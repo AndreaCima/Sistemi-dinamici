@@ -1,6 +1,6 @@
 function [t, ya] = butcher_esplicito(A, b, c, h, tspan, f, y0)
-%BUTCHER Summary of this function goes here
-%   Detailed explanation goes here
+% Calcolo approssimazione ODE con metodi Runge Kutta espliciti, basandosi
+% sulla tabella di Butcher
 arguments (Input)
     A % matrice s x s
     b % vettore 1 x s
