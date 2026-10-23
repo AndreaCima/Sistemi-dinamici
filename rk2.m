@@ -1,6 +1,7 @@
 function [t, ya] = rk2(f, tspan, y0, h, alpha)
 % metodo runge kutta per esercitazione 2
     N = ceil((tspan(2)-tspan(1)) /  h); 
+    h = (tspan(2) - tspan(1)) / N;
     t = linspace(tspan(1), tspan(2), N+1)';
 
     ya = zeros(2, N+1);

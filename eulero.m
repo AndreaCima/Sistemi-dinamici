@@ -6,6 +6,7 @@ function [t, ya] = eulero(f, tspan, y0, h)
 % h è uno scalare: ampiezza passo
 
 N = ceil((tspan(2)-tspan(1)) /  h); 
+h = (tspan(2) - tspan(1)) / N;
 t = linspace(tspan(1), tspan(2), N+1)';
 ya = zeros(2, N+1);
 ya(:, 1) = y0;

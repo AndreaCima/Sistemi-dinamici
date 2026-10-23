@@ -2,6 +2,7 @@ function [t, ya] = rk4(f, tspan, y0, h)
 % metodo Runge Kutta di ordine 4 per esercitazione 2
     
     N = ceil((tspan(2)-tspan(1)) /  h); 
+    h = (tspan(2) - tspan(1)) / N;
     t = linspace(tspan(1), tspan(2), N+1)';
     
     ya = zeros(2, N+1);
