@@ -174,6 +174,8 @@ for j = 1:length(H)
 
 end
 
+writetable(T, 'tabella_SD_2')
+
 figure; 
 loglog(H, err(:, 1), '-o', LineWidth=2,  DisplayName='Eulero')
 grid on
