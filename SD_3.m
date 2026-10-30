@@ -4,7 +4,7 @@ clear; clc; close all
 y0 = [0.1; 1];
 mu = -5;
 T = 10; 
-h_cost = 1e-3;
+h_cost = 1e-1;
 
 A = [mu 0; 1+mu -1];
 tspan = [0 T];
