@@ -36,7 +36,6 @@ for idx = 1:length(h_test)
     h = h_test(idx);
     N1 = ceil(treshold/0.1);
     N2 = ceil((T- treshold)/h);
-    N = N1 + N2;
     h_vec = [0.1*ones(N1, 1); h*ones(N2, 1)];
 
     [t, ya_h_var] = rk4(f, tspan, y0, h_vec);
