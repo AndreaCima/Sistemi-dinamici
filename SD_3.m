@@ -82,7 +82,7 @@ ya_norm2 = sqrt(sum(ya.^2, 2));
 tiledlayout(2, 2)
 
 nexttile
-plot(ya(:, 1), ye(:, 1), LineWidth=2, DisplayName='prima componente')
+plot(ya(:, 1), ye(:, 1), '-', LineWidth=2, DisplayName='prima componente')
 hold on
 grid on
 plot(ya(:, 2), ye(:, 2), '--',  LineWidth=2, DisplayName='seconda componente')
@@ -114,6 +114,7 @@ plot(ye(:, 1), ye(:, 2), '--', LineWidth=2, DisplayName='soluzione esatta')
 title('Spazio delle fasi', Interpreter='latex')
 xlabel('prima componente')
 ylabel('seconda componente')
+legend(Location="best")
 
 
 
