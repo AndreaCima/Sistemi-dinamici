@@ -13,12 +13,13 @@ in = Z( abs(Z + 1) < 1 );
 out = Z( abs(Z + 1) >= 1 );
 
 figure;
-scatter(real(in), imag(in), 'oy')
+scatter(real(in), imag(in), 'ob', DisplayName = 'in')
 hold on
-scatter(real(out), imag(out), 'x')
+scatter(real(out), imag(out), 'xr', DisplayName = 'out')
 grid on
 axis square
 title('Eulero esplicito', Interpreter='latex')
+legend(Location="best")
 
 figure; 
 abs_Z = min(abs(Z + 1), 1);
@@ -42,19 +43,19 @@ y_range = linspace(-2, 2);
 
 Z = X + 1i*Y; % punti nel piano complesso
 
-in = Z( abs(Z - 1) < 1 );
-out = Z( abs(Z - 1) >= 1 );
+in = Z( abs(Z - 1) > 1 );
+out = Z( abs(Z - 1) <= 1 );
 
 figure;
-scatter(real(in), imag(in), 'oy')
+scatter(real(in), imag(in), 'ob', DisplayName = 'in')
 hold on
-scatter(real(out), imag(out), 'x')
+scatter(real(out), imag(out), 'xr', DisplayName = 'out')
 grid on
 axis square
 title('Eulero implicito', Interpreter='latex')
 
 figure; 
-abs_Z = min(abs(Z - 1), 1);
+abs_Z = min(1./abs(Z - 1), 1);
 surf(X, Y, abs_Z) 
 colorbar
 axis square
@@ -84,9 +85,9 @@ in = Z( abs(rZ) < 1 );
 out = Z( abs(rZ) >= 1 );
 
 figure;
-scatter(real(in), imag(in), 'oy')
+scatter(real(in), imag(in), 'ob', DisplayName = 'in')
 hold on
-scatter(real(out), imag(out), 'x')
+scatter(real(out), imag(out), 'xr', DisplayName = 'out')
 grid on
 axis square
 title('RK 2', Interpreter='latex')
@@ -122,9 +123,9 @@ in = Z( abs(rZ) < 1 );
 out = Z( abs(rZ) >= 1 );
 
 figure;
-scatter(real(in), imag(in), 'oy')
+scatter(real(in), imag(in), 'ob', DisplayName = 'in')
 hold on
-scatter(real(out), imag(out), 'x')
+scatter(real(out), imag(out), 'xr', DisplayName = 'out')
 grid on
 axis square
 title('RK 4', Interpreter='latex')
@@ -152,7 +153,6 @@ function rZ = r(A, b, Z)
             rz = 1+z.*(b*( (eye(dim)-z*A) \ ones(dim, 1) ));
             rz = complex(rz(1), rz(2));
             rZ(h, k) = rz;
-
         end
     end
 end
