@@ -9,18 +9,6 @@ y_range = linspace(-2, 2);
 
 Z = X + 1i*Y; % punti nel piano complesso
 
-in = Z( abs(Z + 1) < 1 );
-out = Z( abs(Z + 1) >= 1 );
-
-figure;
-scatter(real(in), imag(in), 'ob', DisplayName = 'in')
-hold on
-scatter(real(out), imag(out), 'xr', DisplayName = 'out')
-grid on
-axis square
-title('Eulero esplicito', Interpreter='latex')
-legend(Location="best")
-
 figure; 
 abs_Z = min(abs(Z + 1), 1);
 surf(X, Y, abs_Z) 
@@ -42,17 +30,6 @@ y_range = linspace(-2, 2);
 [X, Y] = meshgrid(x_range, y_range);
 
 Z = X + 1i*Y; % punti nel piano complesso
-
-in = Z( abs(Z - 1) > 1 );
-out = Z( abs(Z - 1) <= 1 );
-
-figure;
-scatter(real(in), imag(in), 'ob', DisplayName = 'in')
-hold on
-scatter(real(out), imag(out), 'xr', DisplayName = 'out')
-grid on
-axis square
-title('Eulero implicito', Interpreter='latex')
 
 figure; 
 abs_Z = min(1./abs(Z - 1), 1);
@@ -81,16 +58,6 @@ y_range = linspace(-2, 2);
 Z = X + 1i*Y; % punti nel piano complesso
 
 rZ = r(A_rk2, b_rk2, Z);
-in = Z( abs(rZ) < 1 );
-out = Z( abs(rZ) >= 1 );
-
-figure;
-scatter(real(in), imag(in), 'ob', DisplayName = 'in')
-hold on
-scatter(real(out), imag(out), 'xr', DisplayName = 'out')
-grid on
-axis square
-title('RK 2', Interpreter='latex')
 
 figure; 
 abs_Z = min(abs(rZ), 1);
@@ -118,18 +85,7 @@ y_range = linspace(-3, 3);
 
 Z = X + 1i*Y; % punti nel piano complesso
 
-rZ = r(A_rk2, b_rk2, Z);
-
-in = Z( abs(rZ) < 1 );
-out = Z( abs(rZ) >= 1 );
-
-figure;
-scatter(real(in), imag(in), 'ob', DisplayName = 'in')
-hold on
-scatter(real(out), imag(out), 'xr', DisplayName = 'out')
-grid on
-axis square
-title('RK 4', Interpreter='latex')
+rZ = r(A_rk4, b_rk4, Z);
 
 figure; 
 abs_Z = min(abs(rZ), 1);
