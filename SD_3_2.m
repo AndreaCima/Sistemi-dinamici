@@ -73,8 +73,8 @@ A_rk2 = [0 0; 1 0];
 b_rk2 = [0.5, 0.5];
 c_rk2 = [0; 1];
 
-x_range= linspace(-20, 0);
-y_range = linspace(-20, 0);
+x_range= linspace(-3, 1);
+y_range = linspace(-2, 2);
 
 [X, Y] = meshgrid(x_range, y_range);
 
@@ -111,14 +111,15 @@ A_rk4 = [0 0 0 0; 1/2 0 0 0; 0 1/2 0 0; 0 0 1 0];
 b_rk4 = [1/6 1/3 1/3 1/6];
 c_rk4 = [0 1/2 1/2 1];
 
-x_range= linspace(-20, 0);
-y_range = linspace(-20, 0);
+x_range= linspace(-3, 1);
+y_range = linspace(-3, 3);
 
 [X, Y] = meshgrid(x_range, y_range);
 
 Z = X + 1i*Y; % punti nel piano complesso
 
 rZ = r(A_rk2, b_rk2, Z);
+
 in = Z( abs(rZ) < 1 );
 out = Z( abs(rZ) >= 1 );
 
@@ -149,9 +150,8 @@ function rZ = r(A, b, Z)
     dim = length(b);
     for h = 1:size(Z, 1)
         for k = 1:size(Z, 2)
-            z = [real(Z(h, k)) imag(Z(h, k))];
-            rz = 1+z.*(b*( (eye(dim)-z*A) \ ones(dim, 1) ));
-            rz = complex(rz(1), rz(2));
+            z = Z(h, k);
+            rz = 1 + z*(b*( (eye(dim)-z*A) \ ones(dim, 1) ));
             rZ(h, k) = rz;
         end
     end
