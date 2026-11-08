@@ -39,6 +39,31 @@ hold on
 plot(t, ya, LineWidth=2, DisplayName='approssimazione')
 legend(Location="best", Interpreter="latex")
 xlabel('tempo', Interpreter='latex')
+title('Eulero implicito', Interpreter='latex')
+
+
+[t, ya, ~] = RK_Newton(A_tr, b_tr, c_tr, f, df, y0, T, nsteps);
+
+figure; 
+plot(t, ye(t), LineWidth=2, DisplayName='soluzione esatta')
+grid on
+hold on
+plot(t, ya, LineWidth=2, DisplayName='approssimazione')
+legend(Location="best", Interpreter="latex")
+xlabel('tempo', Interpreter='latex')
+title('Trapezi', Interpreter='latex')
+
+
+[t, ya, ~] = RK_Newton(A_RK2, b_RK2, c_RK2, f, df, y0, T, nsteps);
+
+figure; 
+plot(t, ye(t), LineWidth=2, DisplayName='soluzione esatta')
+grid on
+hold on
+plot(t, ya, LineWidth=2, DisplayName='approssimazione')
+legend(Location="best", Interpreter="latex")
+xlabel('tempo', Interpreter='latex')
+title('Runge-Kutta 2', Interpreter='latex')
 
 %% Studio ordine di convergenza
 
