@@ -1,11 +1,28 @@
 function [t, ya, it] = RK_Newton(A, b, c, f, df, y0, T, nsteps)
-    % calcola approssimazione nuemrica di una ODE con Runge Kutta implicito
+    % calcola approssimazione numerica di una ODE con Runge Kutta implicito
     % o semi-implicito usando metodo di Newton ad ognni iterazione.
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    % INPUT
+    % A, b, c : componenti tabella di Butcher
+    % f       : rhs del sistema di ODE
+    % df      : derivata parziale di f rispetto a y
+    % y0      : condizione inziale 
+    % T       : estremo temporale sinistro, t \in [0, T]
+    % nsteps  : numero passi temporali 
+
+    % OUTPUT
+    % t       : vettore dei tempi
+    % ya      : soluzione approssimata
+    % it      : vettore con numero iterazioni di Newton per ogni step
+    %           temporale 
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
     % parametri del metodo di Newton 
     maxiter = 20; 
     tol = 1e-10;
 
+    % stampa a terminale del progresso
     dispProgress = false;
 
     t = linspace(0, T, nsteps)';
