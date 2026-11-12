@@ -55,10 +55,10 @@ function [t, ya, it] = RK_Newton(A, b, c, f, df, y0, T, nsteps)
             f_val = f(T_stage, Y_stage);
             df_val = df(T_stage, Y_stage);
 
-            Phi = K - f_val;
+            F = K - f_val;
             DF = eye(nstages) - h*(diag(df_val) * A);
 
-            dK = - (DF\Phi);
+            dK = - (DF\F);
 
             K = K + dK;
             err= max(abs(dK));
