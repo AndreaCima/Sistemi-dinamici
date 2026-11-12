@@ -8,7 +8,7 @@ function [t, ya, it] = RK_Newton(A, b, c, f, df, y0, T, nsteps)
     % f       : rhs del sistema di ODE
     % df      : derivata parziale di f rispetto a y
     % y0      : condizione inziale 
-    % T       : estremo temporale sinistro, t \in [0, T]
+    % T       : estremo temporale destro, t \in [0, T]
     % nsteps  : numero passi temporali 
 
     % OUTPUT
