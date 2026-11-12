@@ -1,7 +1,7 @@
 clear; clc; close all;
 
 f = @(t, y) y - t + 1;
-df = @(t, y) 1; % derivata parziale rispetto ad y
+df = @(t, y) ones(size(y)); % derivata parziale rispetto ad y
 
 ye = @(t) exp(t) + t; % soluzione esatta, ricavata in modo analitico
 
@@ -101,7 +101,7 @@ figure;
 PLOT = loglog(H, ERR, LineWidth=2);
 PLOT(1).DisplayName = "Eulero implicito";
 PLOT(1).Color = 'b';
-PLOT(2).DisplayName = "trapezi";
+PLOT(2).DisplayName = "Trapezi";
 PLOT(2).Color = 'r';
 PLOT(3).DisplayName = "RK2";
 PLOT(3).Color = 'm';
