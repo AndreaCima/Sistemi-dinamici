@@ -1,6 +1,6 @@
 clear; clc; close all;
 
-epsilon = 1e-3; % provare anche 1e-3
+epsilon = 1e-1; 
 
 y01 = 1.5; 
 y02 = 1; 
@@ -36,18 +36,19 @@ G = @(x, y) -y;
 U = F(X, Y);
 V = G(X, Y);
 
+y_min = min(ya15s(:)) - 0.05;
+y_max = max(ya15s(:)) + 0.05;
+
 figure; 
 quiver(X, Y, U, V)
 grid on
 hold on
-plot(ya113(:, 1), ya113(:, 2))
+plot(ya15s(:, 1), ya15s(:, 2))
+axis([ y_min y_max y_min y_max])
+
 
 figure; 
 tiledlayout(1, 2)
-
-y_min = min(ya15s(:)) - 0.05;
-y_max = max(ya15s(:)) + 0.05;
-
 
 nexttile
 h1 = animatedline('LineWidth', 1.5, Color='blue');
@@ -71,6 +72,6 @@ for k = 1:length(t15s)
     addpoints(h3, y1(t15s(k)), y2(t15s(k)))
 
     drawnow
-    pause (0.1)
+    pause(0.1)
 end
 drawnow
