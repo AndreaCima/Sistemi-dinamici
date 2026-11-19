@@ -157,7 +157,7 @@ loglog(epsilon_test, TIME, '--o', LineWidth=2)
 grid on
 legend('ode113', 'ode15s', 'ode45', Location='best')
 xlabel('$\epsilon$', Interpreter='latex')
-title('Tempo computazionale', Interpreter='latex')
+title('Tempo di cpu', Interpreter='latex')
 
 
 
