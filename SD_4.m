@@ -1,6 +1,6 @@
 clear; clc; close all;
 
-epsilon = 1e-2; 
+epsilon = 1e-1; 
 
 y01 = 1.5; 
 y02 = 1; 
@@ -31,7 +31,7 @@ err45 = norm(sqrt(sum((y(t45)-ya45).^2, 2))) / norm(sqrt(sum(y(t45).^2, 2)));
 F = @(x, y) (1/epsilon) * ( -x + y ./ (1 + y) ) - y ./ ((1 + y).^2);
 G = @(x, y) -y; 
 
-[X, Y] = meshgrid(linspace(0, 1.5, 40));
+[X, Y] = meshgrid(linspace(0, 1.5, 16));
 
 U = F(X, Y);
 V = G(X, Y);
@@ -43,8 +43,10 @@ figure;
 quiver(X, Y, U, V)
 grid on
 hold on
-plot(ya15s(:, 1), ya15s(:, 2))
-axis([ y_min y_max y_min y_max])
+plot(ya15s(:, 1), ya15s(:, 2), LineWidth=2)
+fimplicit(F, [0 1.5 0 1.5], 'k', LineWidth=1)
+xline(0, 'k')
+axis([0 1.5 0 1.5])
 title('Spazio delle fasi', Interpreter='latex')
 xlabel('y1')
 ylabel('y2')
@@ -59,7 +61,7 @@ hold on
 h2 = animatedline('LineWidth', 1.5, Color='red');
 axis([0, T, y_min y_max])
 grid on
-title('Evoluzione temporale', Interpreter='latex')
+title(sprintf('Evoluzione temporale, $\\epsilon$ = %g', epsilon), Interpreter='latex')
 
 nexttile
 h3 = animatedline('LineWidth', 1.5, Color='red');
@@ -69,7 +71,7 @@ fimplicit(F, [0 1.5 0 1.5], 'k', LineWidth=1)
 yline(0, 'k', LineWidth=1)
 axis([ y_min y_max y_min y_max])
 grid on
-title('Spazio delle fasi', Interpreter='latex')
+title(sprintf('Spazio delle fasi, $\\epsilon$ = %g', epsilon), Interpreter='latex')
 xlabel('y1')
 ylabel('y2')
 
